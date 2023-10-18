@@ -115,9 +115,16 @@ public class PosServiceImpl implements PosService {
 
         List<Product> products = order.getProducts();
 
-        for (Product product : products) {
-            totalCost += product.getPrice() * product.getQuantity();
-        }
+//        for (Product product : products) {
+//            totalCost += product.getPrice() * product.getQuantity();
+//        }
+
+         double totalCost = products.stream()
+                 .mapToDouble(product -> {
+                     return product.getQuantity() * product.getPrice();
+                 })
+                 .sum();
+
         displayItems();
         System.out.println("---------------------------------------------");
         System.out.println(" Total Cost: " + totalCost);
