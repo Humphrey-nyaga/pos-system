@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS payments
 (
     id       INTEGER AUTO_INCREMENT PRIMARY KEY,
     order_id VARCHAR(255) NOT NULL,
+    payment_date DATE NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders (order_id) ON UPDATE CASCADE
 
 );
@@ -32,3 +34,4 @@ CREATE TABLE IF NOT EXISTS payments
 INSERT  INTO users ( username, password) VALUES ('admin','Admin123');
 /*INSERT INTO orders (order_id, order_time)
 VALUES (?, ?); */
+INSERT INTO payments ( order_id, payment_date,amount) VALUES (?,?);

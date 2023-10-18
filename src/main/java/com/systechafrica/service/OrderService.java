@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public interface OrderService {
     void saveOrder(Order order);
-    Order getOrderById();
+    Order getOrderById(String orderId);
     void deleteOrderById();
 
 }

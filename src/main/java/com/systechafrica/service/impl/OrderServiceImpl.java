@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderById() {
+    public Order getOrderById(String orderId) {
         return null;
     }
 

@@ -141,7 +141,6 @@ public class PosServiceImpl implements PosService {
         Payment payment = new Payment(order.getOrderId() ,totalCost, LocalDate.now());
         paymentService.savePayment(payment);
 
-
     }
 
     private void displayItems() {
