@@ -37,12 +37,13 @@ public class PosServiceImpl implements PosService {
 
     private Locale locale = Locale.getDefault();
 
-    public PosServiceImpl(AuthenticationService authenticationService,PaymentService paymentService,Logger logger) {
+    public PosServiceImpl(AuthenticationService authenticationService,PaymentService paymentService,OrderService orderService,Logger logger) {
         scanner = new Scanner(System.in);
         this.logger = logger;
         this.authenticationService = authenticationService;
         order = new Order();
         this.paymentService = paymentService;
+        this.orderService = orderService;
     }
 
     @Override

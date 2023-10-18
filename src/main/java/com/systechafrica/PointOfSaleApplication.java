@@ -2,10 +2,13 @@ package com.systechafrica;
 
 import com.systechafrica.db.DatabaseHandler;
 import com.systechafrica.db.impl.DatabaseHandlerMySqlImpl;
+import com.systechafrica.model.Order;
 import com.systechafrica.service.AuthenticationService;
+import com.systechafrica.service.OrderService;
 import com.systechafrica.service.PaymentService;
 import com.systechafrica.service.PosService;
 import com.systechafrica.service.impl.AuthenticationServiceImpl;
+import com.systechafrica.service.impl.OrderServiceImpl;
 import com.systechafrica.service.impl.PaymentServiceImpl;
 import com.systechafrica.service.impl.PosServiceImpl;
 import com.systechafrica.util.CustomFormatter;
@@ -35,8 +38,9 @@ public class PointOfSaleApplication {
         initializeLogger();
         DatabaseHandler databaseHandler = new DatabaseHandlerMySqlImpl();
         PaymentService paymentService = new PaymentServiceImpl(databaseHandler,LOGGER);
+        OrderService orderService = new OrderServiceImpl(databaseHandler,LOGGER);
         AuthenticationService authenticationService = new AuthenticationServiceImpl(databaseHandler,LOGGER);
-        PosService posService = new PosServiceImpl(authenticationService,paymentService,LOGGER);
+        PosService posService = new PosServiceImpl(authenticationService,paymentService,orderService,LOGGER);
         posService.startApplication();
 
 

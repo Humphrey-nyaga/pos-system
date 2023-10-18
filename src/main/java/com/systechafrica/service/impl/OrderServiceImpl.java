@@ -16,9 +16,9 @@ public class OrderServiceImpl implements OrderService {
     DatabaseHandler databaseHandler;
 
 
-    public OrderServiceImpl(Logger logger) {
+    public OrderServiceImpl( DatabaseHandler databaseHandler,Logger logger) {
         this.logger = logger;
-        databaseHandler = new DatabaseHandlerMySqlImpl();
+        this.databaseHandler = databaseHandler;
     }
 
     @Override
