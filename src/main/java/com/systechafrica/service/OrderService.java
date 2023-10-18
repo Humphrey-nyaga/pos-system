@@ -5,7 +5,7 @@ import com.systechafrica.model.Order;
 import java.sql.SQLException;
 
 public interface OrderService {
-    boolean saveOrder(Order order) throws SQLException, ClassNotFoundException;
+    void saveOrder(Order order);
     Order getOrderById();
     void deleteOrderById();
 

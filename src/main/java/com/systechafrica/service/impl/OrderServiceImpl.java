@@ -22,14 +22,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean saveOrder(Order order) throws SQLException, ClassNotFoundException {
+    public void saveOrder(Order order) {
         try (Connection connection = databaseHandler.connect(Config.CONNECTION_URL, Config.DB_USER, Config.DB_PASSWORD)) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders ");
-
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO orders (order_id) VALUES (?);");
+            preparedStatement.setString(1, order.getOrderId());
+            preparedStatement.execute();
+            logger.info("Saving order to database...");
+        }catch (SQLException | ClassNotFoundException e){
+            logger.info("Order Could Not Be Saved!! " + e.getMessage());
         }
-
-
-        return false;
     }
 
     @Override
