@@ -27,4 +27,8 @@ CREATE TABLE IF NOT EXISTS payments
     order_id VARCHAR(255) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders (order_id) ON UPDATE CASCADE
 
-)
+);
+
+INSERT  INTO users ( username, password) VALUES ('admin','Admin123');
+/*INSERT INTO orders (order_id, order_time)
+VALUES (?, ?); */

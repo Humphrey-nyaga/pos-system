@@ -6,6 +6,7 @@ import com.systechafrica.model.Order;
 import com.systechafrica.model.Payment;
 import com.systechafrica.model.Product;
 import com.systechafrica.service.AuthenticationService;
+import com.systechafrica.service.OrderService;
 import com.systechafrica.service.PaymentService;
 import com.systechafrica.service.PosService;
 import com.systechafrica.util.Config;
@@ -25,7 +26,7 @@ public class PosServiceImpl implements PosService {
 
     private AuthenticationService authenticationService;
     private PaymentService paymentService;
-
+    private OrderService orderService;
     Scanner scanner;
 
     private Order order;
@@ -41,6 +42,7 @@ public class PosServiceImpl implements PosService {
         authenticationService = new AuthenticationServiceImpl();
         order = new Order();
         paymentService = new PaymentServiceImpl(logger);
+        orderService = new OrderServiceImpl(logger);
     }
 
     @Override
@@ -128,6 +130,7 @@ public class PosServiceImpl implements PosService {
             change = amountFromUser - totalCost;
             //? assign order id
             order.setOrderId(UUID.randomUUID().toString());
+            orderService.saveOrder(order);
         }else{
             throw new InsufficientAmountException("your amount "+amountFromUser+" is not sufficient for clearing the cost of "+totalCost);
         }
