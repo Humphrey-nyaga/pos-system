@@ -3,6 +3,7 @@ package com.systechafrica.service.impl;
 import com.systechafrica.db.DatabaseHandler;
 import com.systechafrica.db.impl.DatabaseHandlerMySqlImpl;
 import com.systechafrica.service.AuthenticationService;
+import com.systechafrica.service.OrderService;
 import com.systechafrica.service.PaymentService;
 import com.systechafrica.service.PosService;
 import java.util.logging.Logger;
@@ -19,10 +20,11 @@ class PosServiceImplTest {
     @BeforeEach
     void setup() {
         DatabaseHandler databaseHandler = new DatabaseHandlerMySqlImpl();
-        Logger logger = Logger.getLogger(AuthenticationServiceImplTest.class.getName());
+        Logger logger = Logger.getLogger(PosServiceImplTest.class.getName());
         AuthenticationService authenticationService = new AuthenticationServiceImpl(databaseHandler, logger);
         PaymentService paymentService = new PaymentServiceImpl(databaseHandler, logger);
-        posService = new PosServiceImpl(authenticationService, paymentService, logger);
+        OrderService orderService = new OrderServiceImpl(databaseHandler,logger);
+        posService = new PosServiceImpl(authenticationService, paymentService, orderService, logger);
     }
 
     @Test

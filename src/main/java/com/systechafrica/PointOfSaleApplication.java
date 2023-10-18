@@ -43,7 +43,6 @@ public class PointOfSaleApplication {
         PosService posService = new PosServiceImpl(authenticationService,paymentService,orderService,LOGGER);
         posService.startApplication();
 
-
     }
 
 }
