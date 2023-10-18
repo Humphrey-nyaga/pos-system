@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 
 public class PaymentServiceImpl implements PaymentService {
     private Logger logger;
-    DatabaseHandler databaseHandler;
 
-    PaymentServiceImpl(Logger logger) {
+    private DatabaseHandler databaseHandler;
 
+    public PaymentServiceImpl(DatabaseHandler databaseHandler,Logger logger) {
         this.logger = logger;
-        databaseHandler = new DatabaseHandlerMySqlImpl();
+        this.databaseHandler=databaseHandler;
     }
 
     @Override
